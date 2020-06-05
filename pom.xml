@@ -26,7 +26,8 @@
 
     <properties>
         <versions.core>1.0-SNAPSHOT</versions.core>
-        <versions.core>1.0-SNAPSHOT</versions.core>
+        <versions.bukkit>1.0-SNAPSHOT</versions.bukkit>
+        <versions.bungee>1.0-SNAPSHOT</versions.bungee>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
