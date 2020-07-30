@@ -18,6 +18,8 @@ Besides simple plugin names the manager will also search for hook classes matchi
 plugin's version. That way hooking into multiple versions of the same plugin becomes
 possible.
 
+See the [Javadocs](https://docs.phoenix616.dev/hook/) for code specifications.
+
 ### Examples
 
 Example classes that are checked starting from the provided hookPackage root 

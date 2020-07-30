@@ -58,7 +58,7 @@ public abstract class AbstractHookManager<H> {
      * @param logger The custom logger that should be used for errors
      * @param hookPackage The package the hooks are in
      * @param onePackagePerHook Whether each hook should have its own package named after the hook or not
-     *                          Defaults to <tt>false</tt>
+     *                          Defaults to <code>false</code>
      */
     public AbstractHookManager(Logger logger, String hookPackage, boolean onePackagePerHook) {
         this.logger = logger;
@@ -76,7 +76,7 @@ public abstract class AbstractHookManager<H> {
 
     /**
      * Get the suffix to append to the class name when searching for a hook.
-     * @return The hook class suffix; defaults to <tt>"Hook"</tt>
+     * @return The hook class suffix; defaults to <code>"Hook"</code>
      */
     public String getSuffix() {
         return suffix;
@@ -84,7 +84,7 @@ public abstract class AbstractHookManager<H> {
 
     /**
      * Set the suffix to append to the class name when searching for a hook.
-     * @param suffix  The hook class suffix; defaults to <tt>"Hook"</tt>
+     * @param suffix  The hook class suffix; defaults to <code>"Hook"</code>
      */
     public void setSuffix(String suffix) {
         this.suffix = suffix;

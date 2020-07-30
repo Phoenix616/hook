@@ -37,7 +37,7 @@ public interface Hook<P> {
 
     /**
      * The version of this hook. This might be useful for some.
-     * @return The version of this hook; defaults to <tt>0</tt>
+     * @return The version of this hook; defaults to <code>0</code>
      */
     default int getHookVersion() {
         return 0;

@@ -45,7 +45,7 @@ public class HookManager extends AbstractHookManager<Plugin> implements Listener
      * @param parent The parent plugin
      * @param hookPackage The package the hooks are in
      * @param onePackagePerHook Whether each hook should have its own package named after the hook or not
-     *                          Defaults to <tt>false</tt>
+     *                          Defaults to <code>false</code>
      */
     public HookManager(Plugin parent,String hookPackage, boolean onePackagePerHook) {
         super(parent.getLogger(), hookPackage, onePackagePerHook);
