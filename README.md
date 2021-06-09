@@ -2,7 +2,8 @@
 
 Library to simplify hooking into other plugins.
 
-Currently (directly) support Bukkit and Bungee, adding your own is easily possible though.
+Currently (directly) supports Bukkit, Bungee and Velocity, adding your own is easily
+possible though by simply implementing the AbstractHookManager.
 
 ## How to use it
 
@@ -81,6 +82,17 @@ E.g. for WorldGuard 7.2.0-SNAPSHOT a possible hook path would be `your.hook.pack
 <dependency>
     <groupId>de.themoep.hook</groupId>
     <artifactId>hook-bungee</artifactId>
+    <version>1.0-SNAPSHOT<version>
+    <scope>compile</scope>
+</dependency>
+```
+
+#### Velocity adapter:
+
+```xml
+<dependency>
+    <groupId>de.themoep.hook</groupId>
+    <artifactId>hook-velocity</artifactId>
     <version>1.0-SNAPSHOT<version>
     <scope>compile</scope>
 </dependency>

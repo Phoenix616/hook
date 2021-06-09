@@ -53,7 +53,7 @@ public class HookManager extends AbstractHookManager<Plugin> implements Listener
     }
 
     @EventHandler
-    public void onPluginEnable(ProxyReloadEvent event) {
+    public void onReload(ProxyReloadEvent event) {
         getHookables().forEach(this::onHookableDisable);
         registerExistingHookables();
     }
