@@ -117,7 +117,12 @@ public abstract class AbstractHookManager<H> {
 
         if (hookClass != null) {
             try {
-                Hook<H> hook = (Hook<H>) hookClass.getConstructor().newInstance();
+                Hook<H> hook;
+                try {
+                    hook = (Hook<H>) hookClass.getConstructor(hookable.getClass()).newInstance(hookable);
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                    hook = (Hook<H>) hookClass.getConstructor().newInstance();
+                }
                 hook.register();
                 hookMap.put(getName(hookable), hook);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
