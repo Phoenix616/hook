@@ -26,8 +26,8 @@
     </licenses>
 
     <properties>
-        <versions.core>1.0-SNAPSHOT</versions.core>
-        <versions.bukkit>1.0-SNAPSHOT</versions.bukkit>
+        <versions.core>1.0.1-SNAPSHOT</versions.core>
+        <versions.bukkit>1.0.1-SNAPSHOT</versions.bukkit>
         <versions.bungee>1.0-SNAPSHOT</versions.bungee>
         <versions.velocity>1.0-SNAPSHOT</versions.velocity>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

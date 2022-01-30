@@ -25,8 +25,10 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 public class HookManager extends AbstractHookManager<Plugin> implements Listener {
     private final Plugin parent;
@@ -67,6 +69,14 @@ public class HookManager extends AbstractHookManager<Plugin> implements Listener
     @Override
     protected String getName(Plugin plugin) {
         return plugin.getName();
+    }
+
+    @Override
+    protected String[] getNames(Plugin plugin) {
+        List<String> names = new ArrayList<>();
+        names.add(plugin.getName());
+        names.addAll(plugin.getDescription().getProvides());
+        return names.toArray(new String[0]);
     }
 
     @Override

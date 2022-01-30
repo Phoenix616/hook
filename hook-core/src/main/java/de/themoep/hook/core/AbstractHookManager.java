@@ -91,13 +91,21 @@ public abstract class AbstractHookManager<H> {
     }
 
     private void registerHook(H hookable) {
-        String name = NON_WORD_PATTERN.matcher(getName(hookable)).replaceAll("_");
+        for (String name : getNames(hookable)) {
+            if (registerHook(name, hookable)) {
+                break;
+            }
+        }
+    }
+
+    private boolean registerHook(String name, H hookable) {
+        String adjustedName = NON_WORD_PATTERN.matcher(name).replaceAll("_");
         String version = NON_WORD_PATTERN.matcher(getVersion(hookable)).replaceAll("_");
         String path = hookPackage + "." + (onePackagePerHook ? name.toLowerCase(): name);
         Class<?> hookClass = null;
         do {
             try {
-                hookClass = Class.forName(path +  (onePackagePerHook ? version.toLowerCase() + "." + name : version) + suffix);
+                hookClass = Class.forName(path +  (onePackagePerHook ? version.toLowerCase() + "." + adjustedName : version) + suffix);
                 if (!Hook.class.isAssignableFrom(hookClass)) {
                     hookClass = null;
                 }
@@ -106,7 +114,7 @@ public abstract class AbstractHookManager<H> {
                 version = version.substring(0, version.lastIndexOf('_'));
             } else {
                 try {
-                    hookClass = Class.forName(path + (onePackagePerHook ? name : "") + suffix);
+                    hookClass = Class.forName(path + (onePackagePerHook ? adjustedName : "") + suffix);
                     if (!Hook.class.isAssignableFrom(hookClass)) {
                         hookClass = null;
                     }
@@ -125,10 +133,12 @@ public abstract class AbstractHookManager<H> {
                 }
                 hook.register();
                 hookMap.put(getName(hookable), hook);
+                return true;
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
                 logger.log(Level.SEVERE, "Could not hook into " + getName(hookable) + " " + getVersion(hookable) + "!", e);
             }
         }
+        return false;
     }
 
     protected void onHookableEnable(H hookable) {
@@ -140,6 +150,10 @@ public abstract class AbstractHookManager<H> {
         if (hook != null) {
             hook.unregister();
         }
+    }
+
+    protected String[] getNames(H hookable) {
+        return new String[] { getName(hookable) };
     }
 
     protected abstract String getName(H hookable);
