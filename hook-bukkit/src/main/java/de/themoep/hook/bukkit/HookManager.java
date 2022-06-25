@@ -19,7 +19,9 @@ package de.themoep.hook.bukkit;
  */
 
 import de.themoep.hook.core.AbstractHookManager;
+import de.themoep.hook.core.Hook;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
@@ -58,6 +60,10 @@ public class HookManager extends AbstractHookManager<Plugin> implements Listener
 
     @EventHandler
     public void onPluginEnable(PluginEnableEvent event) {
+        Hook<Plugin> hook = getHook(event.getPlugin());
+        if (hook instanceof Listener) {
+            HandlerList.unregisterAll((Listener) hook);
+        }
         onHookableEnable(event.getPlugin());
     }
 
