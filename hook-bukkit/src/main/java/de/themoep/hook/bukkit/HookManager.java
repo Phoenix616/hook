@@ -60,15 +60,15 @@ public class HookManager extends AbstractHookManager<Plugin> implements Listener
 
     @EventHandler
     public void onPluginEnable(PluginEnableEvent event) {
-        Hook<Plugin> hook = getHook(event.getPlugin());
-        if (hook instanceof Listener) {
-            HandlerList.unregisterAll((Listener) hook);
-        }
         onHookableEnable(event.getPlugin());
     }
 
     @EventHandler
     public void onPluginDisable(PluginDisableEvent event) {
+        Hook<Plugin> hook = getHook(event.getPlugin());
+        if (hook instanceof Listener) {
+            HandlerList.unregisterAll((Listener) hook);
+        }
         onHookableDisable(event.getPlugin());
     }
 
