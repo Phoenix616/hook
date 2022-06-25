@@ -80,7 +80,13 @@ public abstract class AbstractHookManager<H> {
      * @return The hook or null
      */
     public Hook<H> getHook(H hookable) {
-        return getHook(getName(hookable));
+        for (String name : getNames(hookable)) {
+            Hook<H> hook = getHook(name);
+            if (hook != null) {
+                return hook;
+            }
+        }
+        return null;
     }
 
     /**
@@ -160,13 +166,19 @@ public abstract class AbstractHookManager<H> {
     }
 
     protected void onHookableEnable(H hookable) {
-        registerHook(hookable);
+        // Check if there is already a hook registered for that Hookable and if not, register it
+        if (getHook(hookable) == null) {
+            registerHook(hookable);
+        }
     }
 
     protected void onHookableDisable(H hookable) {
-        Hook<H> hook = hookMap.remove(getName(hookable));
-        if (hook != null) {
-            hook.unregister();
+        for (String name : getNames(hookable)) {
+            Hook<H> hook = hookMap.remove(name);
+            if (hook != null) {
+                hook.unregister();
+                break;
+            }
         }
     }
 
