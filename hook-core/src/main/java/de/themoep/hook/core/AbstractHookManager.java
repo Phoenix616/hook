@@ -75,6 +75,15 @@ public abstract class AbstractHookManager<H> {
     }
 
     /**
+     * Get the Hook from a Hookable
+     * @param hookable The hookable to get the hook from
+     * @return The hook or null
+     */
+    public Hook<H> getHook(H hookable) {
+        return hookMap.get(getName(hookable));
+    }
+
+    /**
      * Get the suffix to append to the class name when searching for a hook.
      * @return The hook class suffix; defaults to <code>"Hook"</code>
      */
