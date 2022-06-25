@@ -76,11 +76,20 @@ public abstract class AbstractHookManager<H> {
 
     /**
      * Get the Hook from a Hookable
-     * @param hookable The hookable to get the hook from
+     * @param hookable The hookable to get the hook for
      * @return The hook or null
      */
     public Hook<H> getHook(H hookable) {
-        return hookMap.get(getName(hookable));
+        return getHook(getName(hookable));
+    }
+
+    /**
+     * Get the Hook from the name of a Hookable
+     * @param hookable The name of the hookable to get the hook for
+     * @return The hook or null
+     */
+    public Hook<H> getHook(String hookable) {
+        return hookMap.get(hookable);
     }
 
     /**
